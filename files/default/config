@@ -1,0 +1,2 @@
+host bitbucket.org
+	IdentityFile /root/.ssh/git_var
