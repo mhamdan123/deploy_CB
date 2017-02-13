@@ -22,10 +22,20 @@ cookbook_file '/root/.ssh/git_var' do
 	action :create
 end
 
+execute 'stop ssh verification' do
+	command 'sed -i "/StrictHostKeyChecking/c\StrictHostKeyChecking no"'
+	action :run
+end
+
 git "/var/www/html/#{node["project_name"]}" do
   repository node["git_uri"]
   revision 'master'
   #action :checkout
+end
+
+execute 'stop ssh verification' do
+        command 'sed -i "/StrictHostKeyChecking/c\StrictHostKeyChecking ask"'
+        action :run
 end
 
 file '/root/.ssh/git_var' do
