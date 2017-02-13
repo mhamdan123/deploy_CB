@@ -44,5 +44,5 @@ template "/etc/nginx/conf.d/#{node["server_name"]}.conf" do
 end
 
 service "nginx" do
-        action :reload
+        action :restart
 end
