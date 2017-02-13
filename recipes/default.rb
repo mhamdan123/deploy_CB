@@ -23,7 +23,7 @@ cookbook_file '/root/.ssh/git_var' do
 end
 
 execute 'stop ssh verification' do
-	command 'sed -i "/StrictHostKeyChecking/c\StrictHostKeyChecking no"'
+	command 'sed -i "/StrictHostKeyChecking/c\StrictHostKeyChecking no" /etc/ssh/ssh_config'
 	action :run
 end
 
@@ -34,7 +34,7 @@ git "/var/www/html/#{node["project_name"]}" do
 end
 
 execute 'stop ssh verification' do
-        command 'sed -i "/StrictHostKeyChecking/c\StrictHostKeyChecking ask"'
+        command 'sed -i "/StrictHostKeyChecking/c\StrictHostKeyChecking ask" /etc/ssh/ssh_config'
         action :run
 end
 
